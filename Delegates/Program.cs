@@ -28,6 +28,16 @@ Console.WriteLine("The count of the books that are starting with C : " + BookMan
 
 #endregion
 
+#region Apply LamdaExpression and Anymous function 
+
+//get the count of the books that are greater than 30 Apply LamdaExpression
+Console.WriteLine("The count of the books that are greater than 30 Apply LamdaExpression : " + BookManagment.CountBooks(books, book => book.Price > 30M));
+
+//get the count of the books that are greater than 30 Apply Anynmous Method
+Console.WriteLine("The count of the books that are greater than 30 Apply Anynmous Method : " + BookManagment.CountBooks(books, delegate (Book book) { return book.Price > 30M; }));
+
+#endregion
+
 #region Using SimpleDelegation
 
 
