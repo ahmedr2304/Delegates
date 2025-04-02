@@ -87,14 +87,14 @@ Console.WriteLine();
 #region MultiCasting Delegate  
 Console.WriteLine("*******MultiCasting Delegate******");
 
-var RectangleHelper = new RectangleHelper();
+var rectangleHelper = new RectangleHelper();
 
-RectangeDelegate rectangeDelegate;
-rectangeDelegate = RectangleHelper.GetArea;
-rectangeDelegate += RectangleHelper.GetPerimeter;
+RectangleHelper.RectangeDelegate  rectangeDelegate;
+rectangeDelegate = rectangleHelper.GetArea;
+rectangeDelegate += rectangleHelper.GetPerimeter;
 rectangeDelegate(10, 10);
 
-rectangeDelegate -= RectangleHelper.GetPerimeter;
+rectangeDelegate -= rectangleHelper.GetPerimeter;
 Console.WriteLine("*** After un subscribing ");
 rectangeDelegate(10, 10);
 
@@ -129,8 +129,6 @@ Console.WriteLine();
 #region Delegation Declartion
 // Delegate Declaration
 public delegate void MyDelegate(string message);
-
-public delegate void RectangeDelegate(decimal width, decimal height);
 
 #endregion
 
