@@ -2,7 +2,7 @@
 
 #region Using delegation method as predicate paramter
 
-using Delegates;
+Console.WriteLine("******* Using Using delegation method as predicate paramter");
 
 List<Book> books = new List<Book>()
         {
@@ -26,21 +26,47 @@ Console.WriteLine("The count of the books that are Less than 20 : " + BookManagm
 //get the count of the books that are starting with C
 Console.WriteLine("The count of the books that are starting with C : " + BookManagment.CountBooks(books, StartWithC));
 
+Console.WriteLine("******* End Using delegation method as predicate paramter");
+Console.WriteLine();
+
+#endregion
+
+#region UsingBuiltInDelegate
+Console.WriteLine("******* Using Built in Delegate");
+// Calling the Built in delegate "Action" that conatins from 1 param to 16 param and dosn't return value
+Action<string> action = BuiltInDelegates.Print;
+action("Ahmed Ramadan");
+
+// Calling the Built in delegate "Func" that conatins from 1 param to 16 param and has output param as  a return value
+Func<int,int,int> func = BuiltInDelegates.Add;
+Console.WriteLine(func(1, 2));
+
+// Calling the Built in delegate "Func" that conatins one  param  and  return bool
+Predicate<int> predicate= BuiltInDelegates.IsEven;
+Console.WriteLine(predicate(2));
+
+Console.WriteLine("******* End Using Built in Delegate");
+Console.WriteLine();
+
 #endregion
 
 #region Apply LamdaExpression and Anymous function 
 
+Console.WriteLine("*******Apply LamdaExpression and Anymous function");
 //get the count of the books that are greater than 30 Apply LamdaExpression
 Console.WriteLine("The count of the books that are greater than 30 Apply LamdaExpression : " + BookManagment.CountBooks(books, book => book.Price > 30M));
 
 //get the count of the books that are greater than 30 Apply Anynmous Method
 Console.WriteLine("The count of the books that are greater than 30 Apply Anynmous Method : " + BookManagment.CountBooks(books, delegate (Book book) { return book.Price > 30M; }));
 
+Console.WriteLine("*******End Apply LamdaExpression and Anymous function");
+Console.WriteLine();
 #endregion
 
 #region Using SimpleDelegation
 
 
+Console.WriteLine("*******SimpleDelegation");
 static void Welocme(string name) => Console.WriteLine("Welcome " + name);
 static void Hello(string name) => Console.WriteLine("Hello " + name);
 
@@ -57,9 +83,12 @@ static void InvokeMyDelegate(MyDelegate myDelegate, string name) => myDelegate.I
 InvokeMyDelegate(d1, "Ahmed");
 InvokeMyDelegate(d2, "Mohamed");
 
+Console.WriteLine("*******End SimpleDelegation");
+Console.WriteLine();
 // Delegate Declaration
 public delegate void MyDelegate(string message);
 #endregion
+
 
 
 
