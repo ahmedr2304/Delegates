@@ -102,6 +102,56 @@ Console.WriteLine("*******End MultiCasting Delegate******");
 Console.WriteLine();
 #endregion
 
+#region Applying the eventHandler
+Console.WriteLine("*******Applying the eventHandler******");
+// this class is subscriber
+var stock = new Stock("Amazon");
+stock.Price = 100;
+
+Console.WriteLine($"Stock before change : ${stock.Price}");
+// this way to "subscribe" of the event 
+stock.onPriceChanged += Stock_onPriceChanged;
+
+// this method that define in here what will you do when the event has been fired 
+static void Stock_onPriceChanged(Stock _stock, decimal oldPrice)
+{
+    string result = "";
+    if (_stock.Price > oldPrice)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        result = "UP";
+    }
+    else if (_stock.Price < oldPrice) 
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        result = "Down";
+    }
+    else 
+    {
+        Console.ForegroundColor = ConsoleColor.Gray;
+        result = "Equal";
+    }
+    Console.WriteLine($"Name:{_stock.Name} | Price :{_stock.Price} = Result : {result}");
+}
+
+// in case of the price will be increase 
+stock.ChangeStockPriceBy(0.05m);
+// in case of the price will be decrease 
+stock.ChangeStockPriceBy(-0.02m);
+
+// in case of the two prices will be equal 
+stock.ChangeStockPriceBy(0.00m);
+
+// this way to "Un subscribe" of the event 
+stock.onPriceChanged -= Stock_onPriceChanged;
+
+// in case of the price will be increase but "Un subscribing"  
+stock.ChangeStockPriceBy(0.05m);
+
+Console.WriteLine("*******End Applying the eventHandler******");
+Console.WriteLine();
+#endregion
+
 #region Using SimpleDelegation
 
 
@@ -126,6 +176,7 @@ Console.WriteLine("*******End SimpleDelegation");
 Console.WriteLine();
 
 #endregion
+
 #region Delegation Declartion
 // Delegate Declaration
 public delegate void MyDelegate(string message);
