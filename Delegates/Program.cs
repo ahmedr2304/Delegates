@@ -84,6 +84,24 @@ Console.WriteLine("*******End Another Example for Applying LamdaExpression And A
 Console.WriteLine();
 #endregion
 
+#region MultiCasting Delegate  
+Console.WriteLine("*******MultiCasting Delegate******");
+
+var RectangleHelper = new RectangleHelper();
+
+RectangeDelegate rectangeDelegate;
+rectangeDelegate = RectangleHelper.GetArea;
+rectangeDelegate += RectangleHelper.GetPerimeter;
+rectangeDelegate(10, 10);
+
+rectangeDelegate -= RectangleHelper.GetPerimeter;
+Console.WriteLine("*** After un subscribing ");
+rectangeDelegate(10, 10);
+
+Console.WriteLine("*******End MultiCasting Delegate******");
+Console.WriteLine();
+#endregion
+
 #region Using SimpleDelegation
 
 
@@ -106,8 +124,14 @@ InvokeMyDelegate(d2, "Mohamed");
 
 Console.WriteLine("*******End SimpleDelegation");
 Console.WriteLine();
+
+#endregion
+#region Delegation Declartion
 // Delegate Declaration
 public delegate void MyDelegate(string message);
+
+public delegate void RectangeDelegate(decimal width, decimal height);
+
 #endregion
 
 
